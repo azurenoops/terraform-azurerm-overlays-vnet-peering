@@ -14,3 +14,9 @@ terraform {
     }
   }
 }
+
+provider "azurerm" {
+  alias = "peer"
+  features {}
+  subscription_id = var.alias_subscription_id
+}

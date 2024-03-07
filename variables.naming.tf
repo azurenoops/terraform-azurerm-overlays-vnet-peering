@@ -23,8 +23,14 @@ variable "use_naming" {
 }
 
 # Custom naming override
-variable "custom_resource_group_name" {
-  description = "The name of the custom resource group to create. If not set, the name will be generated using the `org_name`, `workload_name`, `deploy_environment` and `environment` variables."
+variable "custom_peering_src_name" {
+  description = "Custom name of the vnet peerings to create"
   type        = string
-  default     = null
+  default     = ""
+}
+
+variable "custom_peering_dest_name" {
+  description = "Custom name of the vnet peerings to create"
+  type        = string
+  default     = ""
 }

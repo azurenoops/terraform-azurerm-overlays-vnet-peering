@@ -3,7 +3,14 @@ locals {
   name_prefix = lower(var.name_prefix)
   name_suffix = lower(var.name_suffix)
 
-  resource_group_name = element(coalescelist(data.azurerm_resource_group.rgrp.*.name, module.mod_scaffold_rg.*.resource_group_name, [""]), 0)
-  location            = element(coalescelist(data.azurerm_resource_group.rgrp.*.location, module.mod_scaffold_rg.*.resource_group_location, [""]), 0)
-  example_custom_name = coalesce(var.custom_resource_group_name, data.azurenoopsutils_resource_name.example_custom_name.result)
+  # Naming convention for the vnet peering
+  vnet_peering_src_name = coalesce(
+    var.custom_peering_src_name,
+    data.azurenoopsutils_resource_name.vnet_peering_src.result,
+  )
+
+  vnet_peering_dest_name = coalesce(
+    var.custom_peering_dest_name,
+   data.azurenoopsutils_resource_name.vnet_peering_dest.result,
+  )
 }

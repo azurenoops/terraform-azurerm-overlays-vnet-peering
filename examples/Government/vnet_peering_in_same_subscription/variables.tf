@@ -1,7 +1,7 @@
 variable "location" {
   description = "Azure region in which instance will be hosted"
   type        = string
-  default     = "eastus"
+  default     = "usgovvirginia"
 }
 
 variable "deploy_environment" {
@@ -13,13 +13,13 @@ variable "deploy_environment" {
 variable "environment" {
   description = "Name of the environnement"
   type        = string
-  default     = "public"
+  default     = "usgovernment"
 }
 
 variable "workload_name" {
   description = "Name of the workload_name"
   type        = string
-  default     = "example"
+  default     = "peering"
 }
 
 variable "org_name" {
