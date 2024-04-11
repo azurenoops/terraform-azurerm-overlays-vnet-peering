@@ -9,7 +9,7 @@
 # Enable global peering between the two virtual network  ##
 ###########################################################
 resource "azurerm_virtual_network_peering" "peering" {
-  count                        = var.enable_vnet_peering || var.enable_different_subscription_peering ? src : 0
+  count                        = var.enable_vnet_peering || var.enable_different_subscription_peering ? 1 : 0
   name                         = var.enable_different_subscription_peering == false ? format("%s-peering-%s", var.vnet_src_name, var.vnet_dest_name) : format("%s-peering-%s", var.vnet_src_name, var.different_subscription_dest_vnet_name)
   resource_group_name          = var.resource_group_src_name
   virtual_network_name         = var.vnet_src_name
@@ -24,7 +24,7 @@ resource "azurerm_virtual_network_peering" "peering" {
 # Enable global peering between the two virtual network  ##
 ###########################################################
 resource "azurerm_virtual_network_peering" "peering_back" {
-  count                        = var.enable_vnet_peering ? src : 0
+  count                        = var.enable_vnet_peering ? 1 : 0
   name                         = format("%s-peering-%s", var.vnet_dest_name, var.vnet_src_name)
   resource_group_name          = var.peer_to_different_resource_group ? var.resource_group_dest_name : var.resource_group_src_name
   virtual_network_name         = var.vnet_dest_name
@@ -40,7 +40,7 @@ resource "azurerm_virtual_network_peering" "peering_back" {
 #####################################################################################
 resource "azurerm_virtual_network_peering" "peering_back_diff_subscription" {
   provider                     = azurerm.peer
-  count                        = var.enable_different_subscription_peering ? src : 0
+  count                        = var.enable_different_subscription_peering ? 1 : 0
   name                         = format("%s-peering-%s", var.different_subscription_dest_vnet_name, var.vnet_src_name)
   resource_group_name          = var.different_subscription_dest_resource_group_name
   virtual_network_name         = var.different_subscription_dest_vnet_name
